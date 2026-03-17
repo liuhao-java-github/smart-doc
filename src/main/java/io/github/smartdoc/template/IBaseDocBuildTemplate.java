@@ -73,6 +73,14 @@ public interface IBaseDocBuildTemplate {
 		if (Objects.nonNull(downloadTag)) {
 			return new ArrayList<>(0);
 		}
+
+		DocletTag customReturnTag = method.getTagByName(DocTags.CUSTOM_RETURN);
+		String customReturnType = null;
+		if (Objects.nonNull(customReturnTag) && StringUtil.isNotEmpty(customReturnTag.getValue())) {
+			customReturnType = customReturnTag.getValue().trim();
+			docJavaMethod.setCustomReturnType(customReturnType);
+		}
+
 		String returnTypeGenericCanonicalName = method.getReturnType().getGenericCanonicalName();
 		if (Objects.nonNull(projectBuilder.getApiConfig().getResponseBodyAdvice())
 				&& Objects.isNull(method.getTagByName(DocTags.IGNORE_RESPONSE_BODY_ADVICE))) {
@@ -81,6 +89,11 @@ public interface IBaseDocBuildTemplate {
 				returnTypeGenericCanonicalName = responseBodyAdvice + "<" + returnTypeGenericCanonicalName + ">";
 			}
 		}
+
+		if (StringUtil.isNotEmpty(customReturnType)) {
+			returnTypeGenericCanonicalName = customReturnType;
+		}
+
 		Map<String, JavaType> actualTypesMap = docJavaMethod.getActualTypesMap();
 		ApiReturn apiReturn = DocClassUtil.processReturnType(returnTypeGenericCanonicalName);
 		String returnType = apiReturn.getGenericCanonicalName();

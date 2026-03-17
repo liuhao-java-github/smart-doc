@@ -108,6 +108,11 @@ public class DocJavaMethod {
 	 */
 	private Set<String> jsonViewClasses;
 
+	/**
+	 * custom return type specified by @customReturn tag
+	 */
+	private String customReturnType;
+
 	public Set<String> getJsonViewClasses() {
 		if (jsonViewClasses == null) {
 			return Collections.emptySet();
@@ -117,6 +122,15 @@ public class DocJavaMethod {
 
 	public DocJavaMethod setJsonViewClasses(Set<String> jsonViewClasses) {
 		this.jsonViewClasses = jsonViewClasses;
+		return this;
+	}
+
+	public String getCustomReturnType() {
+		return customReturnType;
+	}
+
+	public DocJavaMethod setCustomReturnType(String customReturnType) {
+		this.customReturnType = customReturnType;
 		return this;
 	}
 

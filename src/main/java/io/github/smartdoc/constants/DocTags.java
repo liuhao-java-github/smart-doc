@@ -152,4 +152,9 @@ public interface DocTags {
 	 */
 	String EXTENSION = "extension";
 
+	/**
+	 * custom @return tag for specifying actual return type
+	 */
+	String CUSTOM_RETURN = "customReturn";
+
 }
