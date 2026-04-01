@@ -191,6 +191,14 @@
         </plugins>
         <finalName>smart-doc</finalName>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>http://lib.gydev.cn/repository/gyyxreposityor/</url>
+        </repository>
+    </distributionManagement>
+
     <profiles>
         <profile>
             <id>release</id>
